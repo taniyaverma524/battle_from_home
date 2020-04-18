@@ -58,10 +58,8 @@ class LoginLogoutApiView(APIView):
     def post(self,request):
         username=request.data.get('username',None)
         password=request.data.get('password',None)
-        print(username,password)
         if username and password :
             user= authenticate(username=username,password=password)
-            print(user,'user')
             if user :
                 auth_login(request, user)
                 return Response(
