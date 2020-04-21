@@ -7,12 +7,16 @@ class User(AbstractUser):
         ('Female','Female'),
         ('Transgender','Transgender'),
     )
-    mobile = models.IntegerField(null=True, blank=True)
+    mobile = models.CharField(null=True, blank=True,max_length=20)
     gender= models.CharField(choices=GenderChoices,null=True,blank=True,max_length=20)
     dob= models.DateField(null=True,blank=True)
     profile_picture=models.CharField(max_length=200,blank=True,null=True)
     created_on = models.DateTimeField(auto_now_add=True)
     modifield_on=models.DateTimeField(auto_now=True)
+    account_number=models.CharField(null=True,blank=True,max_length=100)
+    ifsc_code=models.CharField(null=True,blank=True,max_length=50)
+    upi_id=models.CharField(null=True,blank=True,max_length=100)
+    paytm_number=models.IntegerField(null=True,blank=True)
 
     class Meta:
          db_table='auth_user'
@@ -28,6 +32,7 @@ class User(AbstractUser):
 
              # More Permissions
          )
+
 
 
 

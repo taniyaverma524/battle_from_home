@@ -131,10 +131,15 @@ USE_TZ = True
 #     ),
 # }
 
+AUTHENTICATION_BACKENDS = {
+    'django.contrib.auth.backends.ModelBackend',
+    'apps.users.backend.EmailOrPhoneModelBackend',
+}
 
 CUSTOM_DIRS = {
     'BG_IMAGE_DIR': 'bg_image',
     'FRONT_BANNER_IMAGE_DIR':'front_banner_image',
+    'PROFILE_PIC_DIR':'profile_pic'
 }
 
 # Static files (CSS, JavaScript, Images)

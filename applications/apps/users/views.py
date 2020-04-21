@@ -28,7 +28,6 @@ class UserUpdateApiView(APIView):
     # permission_classes = [IsAuthenticated]
     def get_object(self,pk):
         try:
-            print(User.objects.get(id=pk),'tttttttttttttt')
             return User.objects.get(id=pk)
         except  ObjectDoesNotExist:
             return Http404
@@ -40,7 +39,6 @@ class UserUpdateApiView(APIView):
         return Response(serializer.data, status= status.HTTP_200_OK)
     def patch(self, request,pk):
         serializer_object=self.get_object(pk)
-        print(request.data)
         serializer = UserUpdateSerializer(serializer_object,data=request.data,partial=True)
         if serializer.is_valid():
             user=serializer.save()
@@ -61,15 +59,15 @@ class LoginLogoutApiView(APIView):
         if username and password :
             user= authenticate(username=username,password=password)
             if user :
-                auth_login(request, user)
+                auth_login(request, user, backend='django.contrib.auth.backends.ModelBackend')
                 return Response(
                     {
                         'status': status.HTTP_200_OK,
                         'message': 'You have been successfully logged in',
                         'data': {
-                            'username': user.username,
                             'email': user.email,
-                            'name': user.first_name
+                            'name': user.first_name,
+                            'mobile': user.mobile,
                         },
                     },
                     status=status.HTTP_200_OK)

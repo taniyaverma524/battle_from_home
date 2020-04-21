@@ -25,9 +25,9 @@ class TournamentAdmin(admin.ModelAdmin):
     form=TournamentForm
     prepopulated_fields = {'slug': ('match_name',)}
     list_display = ['match_name','match_type','tournament_type','map','active','slot_occupancy']
-    fields = ['match_name','slug','match_type','user_list','tournament_type','map','date_of_match','winning_prize','slot_occupancy','room_id','room_password'
+    fields = [('match_name','slug'),'match_type','user_list',('tournament_type','map'),'date_of_match','winning_prize','slot_occupancy',('room_id','room_password')
         ,'per_kill','entry_fee','description','active','bg_picture','select_bgimage',get_image_preview]
-    readonly_fields = ['bg_picture',get_image_preview]
-
+    readonly_fields = ['bg_picture',get_image_preview,'slot_occupancy']
+    radio_fields = {"match_type": admin.VERTICAL,"tournament_type":admin.VERTICAL}
 
 admin.site.register(Tournament,TournamentAdmin)
