@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
-# Register your models here.
+
 from apps.banner.models import Banner ,FrontPageBanner
 from apps.banner.forms import FrontPageBannerForm
 
@@ -23,6 +23,8 @@ class FrontPageBannerAdmin(admin.TabularInline):
 
 
 class BannerAdmin(admin.ModelAdmin):
+    list_filter = ['is_active']
+    search_fields = ['theme_name']
     list_display = ['theme_name','is_active']
     inlines = [FrontPageBannerAdmin]
 

@@ -14,6 +14,8 @@ get_image_preview.short_description=_("Picture Preview")
 class UserAdmin(admin.ModelAdmin):
     form = UserForm
     readonly_fields = ['password',get_image_preview,'profile_picture']
+    search_fields = ['first_name','email','mobile']
+    list_filter = ['date_joined']
     fieldsets = [
         ['User general information', {
             'fields': ['email',('first_name','last_name'),'password','mobile','gender','dob','profile_picture','select_profile_pic',get_image_preview,'date_joined','last_login']

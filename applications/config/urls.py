@@ -18,10 +18,17 @@ from django.urls import path , include
 from django.conf import settings
 from django.conf.urls.static import static
 from apps.users import urls as user_urls
+from apps.tournaments import urls as tournament_urls
+from apps.banner import urls as banner_urls
+from rest_framework.authtoken import views
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('auth/', include('djoser.urls')),
-    # path('auth/', include('djoser.urls.jwt')),
-    path('user/',include(user_urls,namespace='user'))
+    path('user/',include(user_urls,namespace='user')),
+    path('tournament/',include(tournament_urls,namespace='tournament')),
+    path('banner/',include(banner_urls,namespace='banner')),
+    path('api-token-auth/',views.obtain_auth_token,name='api-token-auth'),
+
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

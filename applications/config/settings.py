@@ -28,6 +28,13 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+CORS_ORIGIN_WHITELIST = [
+
+    "http://localhost:4200",
+
+]
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,12 +44,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'djoser',
     'rest_framework',
-    # 'rest_framework_simplejwt',
+    'rest_framework.authtoken',
     'apps.tournaments.apps.TournamentsConfig',
     'apps.users.apps.UsersConfig',
     'apps.banner.apps.BannerConfig',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -53,6 +60,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -124,12 +133,12 @@ USE_L10N = True
 
 USE_TZ = True
 
-#
-# REST_FRAMEWORK = {
-#     'DEFAULT_AUTHENTICATION_CLASSES': (
-#         'rest_framework_simplejwt.authentication.JWTAuthentication',
-#     ),
-# }
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
 
 AUTHENTICATION_BACKENDS = {
     'django.contrib.auth.backends.ModelBackend',
@@ -141,6 +150,24 @@ CUSTOM_DIRS = {
     'FRONT_BANNER_IMAGE_DIR':'front_banner_image',
     'PROFILE_PIC_DIR':'profile_pic'
 }
+
+
+""" Email verification method """
+from config.email_info import *
+
+MULTIPLE_MAIL_SETTINGS ={
+    'default':{
+'tls':EMAIL_USE_TLS,
+'host':EMAIL_HOST,
+'port':EMAIL_PORT,
+'user':EMAIL_HOST_USER,
+'password':EMAIL_HOST_PASSWORD
+
+}
+}
+
+
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/

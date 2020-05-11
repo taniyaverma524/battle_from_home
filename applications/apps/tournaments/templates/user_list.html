@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+      <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <title>Battle From Home</title>
+</head>
+<body>
+<div class="container">
+
+<div >
+    <center>
+    <h1> Battle From Home </h1>
+    </center>
+</div>
+
+
+    <div>
+          <center>
+    <h2> {{data.match_name}} </h2>
+    </center>
+    </div>
+  <br>  <br>
+<div class="col-md-12">
+    <div class="col-md-6">
+
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Match Type</th>
+      <td scope="col">{{data.match_type}}</td>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Tournament Type</th>
+      <td>{{data.tournament_type}}</td>
+
+    </tr>
+    <tr>
+      <th scope="row">Map</th>
+      <td>{{data.map }}</td>
+
+    </tr>
+    <tr>
+      <th scope="row">Date Of Match</th>
+      <td>{{data.date_of_match}}</td>
+    </tr>
+      <tr>
+      <th scope="row">Winning Price</th>
+      <td>{{data.winning_prize}}</td>
+    </tr>
+      <tr>
+      <th scope="row">Per Kill</th>
+      <td>{{data.per_kill}}</td>
+    </tr>
+        <tr>
+      <th scope="row">Entry Fee</th>
+      <td>{{data.entry_fee}}</td>
+    </tr>
+          <tr>
+      <th scope="row">Room ID & Password</th>
+      <td>{{data.room_id}} && {{data.room_password}}</td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+    <div class="col-md-6">
+        <table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">User List </th>
+
+    </tr>
+  </thead>
+  <tbody>
+  {% if data.user_list %}
+     <tr>
+
+      <td>{{data.user_list}}</td>
+
+    </tr>
+
+{% else %}
+
+
+    <tr>
+
+      <td> No User Added  </td>
+
+    </tr>
+  {% endif %}
+
+
+  </tbody>
+</table>
+    </div>
+</div>
+
+
+
+    </div>
+</body>
+</html>
